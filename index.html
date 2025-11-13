@@ -1,159 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature of Pakistan</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Nature</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="hero-overlay">
-            <h1>Discover Pakistan's Natural Beauty</h1>
-            <p>Mountains, Lakes, Valleys & Iconic Architecture</p>
-        </div>
-        <canvas id="particles"></canvas>
-    </header>
+  <header>
+    <h1>Explore the Beauty of Nature</h1>
+  </header>
 
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#mountains"><i class="fas fa-mountain"></i> Mountains</a></li>
-            <li><a href="#lakes"><i class="fas fa-water"></i> Lakes</a></li>
-            <li><a href="#mosques"><i class="fas fa-mosque"></i> Mosques</a></li>
-            <li><a href="#valleys"><i class="fas fa-tree"></i> Valleys</a></li>
-        </ul>
-    </nav>
+  <section class="slideshow">
+    <div class="slide fade">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Nature 1">
+    </div>
+    <div class="slide fade">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Nature 2">
+    </div>
+    <div class="slide fade">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80" alt="Nature 3">
+    </div>
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  </section>
 
-    <section class="slider">
-        <div class="carousel">
-            <div class="carousel-track">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Hunza Valley">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Faisal Mosque">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lake Saif ul Malook">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Skardu Valley">
-            </div>
-            <button class="prev">&#10094;</button>
-            <button class="next">&#10095;</button>
-        </div>
-    </section>
+  <section class="about">
+    <h2>About This Site</h2>
+    <p>This website showcases the stunning beauty of nature around the world. Enjoy the visuals and immerse yourself in the landscapes!</p>
+  </section>
 
-    <main>
-        <section id="mountains" class="content-section animate">
-            <h2>Majestic Mountains</h2>
-            <p>The northern mountains of Pakistan are breathtaking. From Hunza Valley to Nanga Parbat, explore the peaks that touch the sky.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Mountains">
-        </section>
-
-        <section id="lakes" class="content-section animate">
-            <h2>Serene Lakes</h2>
-            <p>Crystal-clear lakes like Lake Saif ul Malook and Attabad Lake offer peaceful escapes surrounded by nature.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lakes">
-        </section>
-
-        <section id="mosques" class="content-section animate">
-            <h2>Iconic Mosques</h2>
-            <p>Architectural marvels like Faisal Mosque in Islamabad blend spirituality with stunning design.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Mosques">
-        </section>
-
-        <section id="valleys" class="content-section animate">
-            <h2>Lush Valleys</h2>
-            <p>Green valleys such as Skardu and Swat provide breathtaking landscapes for hikers and travelers.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Valleys">
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Nature of Pakistan. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
-        const nextBtn = document.querySelector('.next');
-        const prevBtn = document.querySelector('.prev');
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        slides.forEach((slide,index) => {
-            slide.style.left = (slideWidth * index) + 'px';
-        });
-        let currentIndex = 0;
-        function moveToSlide(index) {
-            track.style.transform = 'translateX(-' + (slideWidth * index) + 'px)';
-        }
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            moveToSlide(currentIndex);
-        });
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            moveToSlide(currentIndex);
-        });
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            moveToSlide(currentIndex);
-        }, 4000);
-
-        const animSections = document.querySelectorAll('.animate');
-        window.addEventListener('scroll', () => {
-            animSections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const triggerPoint = window.innerHeight - 100;
-                if(sectionTop < triggerPoint) {
-                    section.classList.add('show');
-                }
-            });
-        });
-
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.7;
-        let particlesArray = [];
-        class Particle {
-            constructor(){
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-            }
-            update(){
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if(this.x > canvas.width) this.x = 0;
-                if(this.x < 0) this.x = canvas.width;
-                if(this.y > canvas.height) this.y = 0;
-                if(this.y < 0) this.y = canvas.height;
-            }
-            draw(){
-                ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        function initParticles(){
-            particlesArray = [];
-            for(let i=0;i<100;i++){
-                particlesArray.push(new Particle());
-            }
-        }
-        function animateParticles(){
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particlesArray.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        initParticles();
-        animateParticles();
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.7;
-            initParticles();
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
