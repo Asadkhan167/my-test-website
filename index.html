@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asad's Innovative Test Site</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.5s;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff4e50;
+            cursor: pointer;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        h1:hover {
+            transform: rotate(10deg) scale(1.1);
+            color: #00bfff;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #ff4e50;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #00bfff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="magicTitle">Welcome to Asad’s Innovative Test Site! 😎</h1>
+    <p id="funText">Click the magic button below for a surprise! ✨</p>
+    <button onclick="magicButton()">Click Me!</button>
+
+    <script>
+        const body = document.body;
+        const title = document.getElementById('magicTitle');
+        const text = document.getElementById('funText');
+
+        function magicButton() {
+            // Change background color randomly
+            const colors = ['#ff9a9e','#fad0c4','#a18cd1','#fbc2eb','#ffecd2','#cfd9df'];
+            body.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+            // Change text randomly
+            const messages = [
+                "You're awesome! 💥",
+                "Keep coding, legend! 💻🔥",
+                "Innovation is your superpower ⚡",
+                "Wow, look at this magic! ✨",
+                "HTML wizard in action! 🧙‍♂"
+            ];
+            text.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+            // Make the title spin a little
+            title.style.transform = "rotate(" + (Math.random() * 30 - 15) + "deg)";
+        }
+    </script>
+</body>
+</html>
