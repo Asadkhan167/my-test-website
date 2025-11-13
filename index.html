@@ -3,14 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beautiful Nature</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Asad's Combined Website</title>
+  <style>
+    /* --- General Styles --- */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      transition: background 0.5s;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin: 20px 0;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: 10px auto 30px auto;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 15px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ff4e50;
+      color: white;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background-color: #00bfff;
+      transform: scale(1.1);
+    }
+
+    /* --- Magic Section --- */
+    #magicTitle {
+      font-size: 2.5em;
+      color: #ff4e50;
+      cursor: pointer;
+      transition: transform 0.3s, color 0.3s;
+      margin-top: 20px;
+    }
+
+    #magicTitle:hover {
+      transform: rotate(10deg) scale(1.1);
+      color: #00bfff;
+    }
+
+    #funText {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    /* --- Slideshow Section --- */
+    .slideshow {
+      position: relative;
+      max-width: 1000px;
+      margin: 30px auto;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .about {
+      padding: 20px;
+      background: #f0f0f0;
+      border-radius: 15px;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Explore the Beauty of Nature</h1>
-  </header>
 
+  <!-- Hello World Section -->
+  <h1>Hello World 👋</h1>
+  <p>This is my first website made with GitHub and ChatGPT!</p>
+
+  <!-- Magic Section -->
+  <h1 id="magicTitle">Welcome to Asad’s Magic & Nature Site! 😎</h1>
+  <p id="funText">Click the magic button below for a surprise! ✨</p>
+  <button onclick="magicButton()">Click Me!</button>
+
+  <!-- Slideshow Section -->
   <section class="slideshow">
     <div class="slide fade">
       <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Nature 1">
@@ -25,11 +138,55 @@
     <a class="next" onclick="changeSlide(1)">&#10095;</a>
   </section>
 
+  <!-- About Section -->
   <section class="about">
     <h2>About This Site</h2>
-    <p>This website showcases the stunning beauty of nature around the world. Enjoy the visuals and immerse yourself in the landscapes!</p>
+    <p>This website combines your first Hello World greeting with interactive magic and stunning nature visuals. Enjoy the surprises and landscapes!</p>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    // --- Magic Button Script ---
+    const body = document.body;
+    const title = document.getElementById('magicTitle');
+    const text = document.getElementById('funText');
+
+    function magicButton() {
+      const colors = ['#ff9a9e','#fad0c4','#a18cd1','#fbc2eb','#ffecd2','#cfd9df'];
+      body.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      const messages = [
+        "You're awesome! 💥",
+        "Keep coding, legend! 💻🔥",
+        "Innovation is your superpower ⚡",
+        "Wow, look at this magic! ✨",
+        "HTML wizard in action! 🧙‍♂️"
+      ];
+      text.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+      title.style.transform = "rotate(" + (Math.random() * 30 - 15) + "deg)";
+    }
+
+    // --- Slideshow Script ---
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+
+    function showSlide(n) {
+      if (n >= slides.length) slideIndex = 0;
+      if (n < 0) slideIndex = slides.length - 1;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex].style.display = "block";
+    }
+
+    function changeSlide(n) {
+      slideIndex += n;
+      showSlide(slideIndex);
+    }
+
+    // Initialize slideshow
+    showSlide(slideIndex);
+  </script>
 </body>
 </html>
