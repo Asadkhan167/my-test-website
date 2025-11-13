@@ -1,61 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature of Pakistan</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nature of Pakistan</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Header with main image -->
+    <!-- Hero Header -->
     <header>
-        <div class="header-content">
+        <div class="hero-overlay">
             <h1>Discover Pakistan's Natural Beauty</h1>
+            <p>Mountains, Lakes, Valleys & Iconic Architecture</p>
         </div>
+        <canvas id="particles"></canvas>
     </header>
+
+    <!-- Sticky Sidebar with Icons -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#mountains"><i class="fas fa-mountain"></i> Mountains</a></li>
+            <li><a href="#lakes"><i class="fas fa-water"></i> Lakes</a></li>
+            <li><a href="#mosques"><i class="fas fa-mosque"></i> Mosques</a></li>
+            <li><a href="#valleys"><i class="fas fa-tree"></i> Valleys</a></li>
+        </ul>
+    </nav>
 
     <!-- Slider Section -->
     <section class="slider">
-        <div class="slides">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Hunza Valley">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Faisal Mosque">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lake Saif ul Malook">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Skardu Valley">
+        <div class="carousel">
+            <div class="carousel-track">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Hunza Valley">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Faisal Mosque">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lake Saif ul Malook">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Skardu Valley">
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
         </div>
     </section>
 
-    <!-- Options Section -->
-    <section class="options">
-        <div class="option-card">
-            <h2>Mountains</h2>
-            <p>Explore the majestic peaks of northern Pakistan.</p>
-        </div>
-        <div class="option-card">
-            <h2>Lakes</h2>
-            <p>Discover the serene and crystal-clear lakes.</p>
-        </div>
-        <div class="option-card">
-            <h2>Mosques</h2>
-            <p>Experience the iconic architecture, like Faisal Mosque.</p>
-        </div>
-        <div class="option-card">
-            <h2>Valleys</h2>
-            <p>Walk through the lush green valleys of Pakistan.</p>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main>
+        <section id="mountains" class="content-section animate">
+            <h2>Majestic Mountains</h2>
+            <p>The northern mountains of Pakistan are breathtaking. From Hunza Valley to Nanga Parbat, explore the peaks that touch the sky.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Mountains">
+        </section>
 
+        <section id="lakes" class="content-section animate">
+            <h2>Serene Lakes</h2>
+            <p>Crystal-clear lakes like Lake Saif ul Malook and Attabad Lake offer peaceful escapes surrounded by nature.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lakes">
+        </section>
+
+        <section id="mosques" class="content-section animate">
+            <h2>Iconic Mosques</h2>
+            <p>Architectural marvels like Faisal Mosque in Islamabad blend spirituality with stunning design.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Mosques">
+        </section>
+
+        <section id="valleys" class="content-section animate">
+            <h2>Lush Valleys</h2>
+            <p>Green valleys such as Skardu and Swat provide breathtaking landscapes for hikers and travelers.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Valleys">
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nature of Pakistan. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        // Simple slider functionality
-        const slides = document.querySelectorAll('.slides img');
-        let current = 0;
-        function slider() {
-            slides.forEach((img, i) => {
-                img.style.display = i === current ? 'block' : 'none';
-            });
-            current = (current + 1) % slides.length;
+        // Slider
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.prev');
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        slides.forEach((slide, index) => slide.style.left = slideWidth * index + 'px');
+        let currentIndex = 0;
+        function moveToSlide(index) {
+            track.style.transform = 'translateX(-' + slides[index].style.left + ')';
         }
-        slider();
-        setInterval(slider, 4000); // change slide every 4s
+        nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; moveToSlide(currentIndex); });
+        prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; moveToSlide(currentIndex); });
+        setInterval(() => { currentIndex = (currentIndex + 1) % slides.length; moveToSlide(currentIndex); }, 4000);
+
+        // Scroll-triggered animations
+        const animSections = document.querySelectorAll('.animate');
+        window.addEventListener('scroll', () => {
+            animSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const triggerPoint = window.innerHeight - 100;
+                if(sectionTop < triggerPoint) { section.classList.add('show'); }
+            });
+        });
+
+        // Particle Background
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 0.7;
+        let particlesArray = [];
+        class Particle {
+            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 3 + 1; this.speedX = Math.random() * 1 - 0.5; this.speedY = Math.random() * 1 - 0.5; }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x > canvas.width) this.x = 0; if(this.x < 0) this.x = canvas.width; if(this.y > canvas.height) this.y = 0; if(this.y < 0) this.y = canvas.height; }
+            draw() { ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+        }
+        function initParticles() { particlesArray = []; for(let i=0;i<100;i++){particlesArray.push(new Particle());} }
+        function animateParticles() { ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p => {p.update(); p.draw();}); requestAnimationFrame(animateParticles); }
+        initParticles(); animateParticles();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight * 0.7; initParticles(); });
     </script>
 </body>
-</html>
+</html>a
