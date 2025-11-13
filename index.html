@@ -1,192 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asad's Combined Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+  <title>Your Site Title</title>
   <style>
-    /* --- General Styles --- */
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      transition: background 0.5s;
+      font-family: Arial, sans‑serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      background: url("https://example.com/hero‑image.jpg") center/cover no-repeat;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 20px auto 0;
+    }
+    nav {
+      background: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .goals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space‑around;
+    }
+    .goal {
+      flex: 1 1 200px;
       text-align: center;
     }
-
-    h1, h2 {
-      margin: 20px 0;
+    .goal img {
+      width: 80px;
+      height: auto;
     }
-
-    p {
-      color: #555;
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: 10px auto 30px auto;
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto‑fill, minmax(300px, 1fr));
+      gap: 20px;
     }
-
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 15px 30px;
-      font-size: 1em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background-color: #ff4e50;
-      color: white;
-      transition: background-color 0.3s, transform 0.3s;
+    .article {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
     }
-
-    button:hover {
-      background-color: #00bfff;
-      transform: scale(1.1);
-    }
-
-    /* --- Magic Section --- */
-    #magicTitle {
-      font-size: 2.5em;
-      color: #ff4e50;
-      cursor: pointer;
-      transition: transform 0.3s, color 0.3s;
-      margin-top: 20px;
-    }
-
-    #magicTitle:hover {
-      transform: rotate(10deg) scale(1.1);
-      color: #00bfff;
-    }
-
-    #funText {
-      font-size: 1.3em;
-      margin-bottom: 10px;
-    }
-
-    /* --- Slideshow Section --- */
-    .slideshow {
-      position: relative;
-      max-width: 1000px;
-      margin: 30px auto;
-    }
-
-    .slide {
-      display: none;
-    }
-
-    .slide img {
+    .article img {
       width: 100%;
-      border-radius: 15px;
+      display: block;
     }
-
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 24px;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      background-color: rgba(0,0,0,0.3);
-      transition: 0.3s;
+    .article .content {
+      padding: 15px;
     }
-
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
     }
-
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.6);
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 10px;
     }
-
-    .about {
-      padding: 20px;
-      background: #f0f0f0;
-      border-radius: 15px;
-      max-width: 900px;
-      margin: 30px auto;
+    @media (max‑width: 768px) {
+      header {
+        padding: 60px 10px;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hello World Section -->
-  <h1>Hello World 👋</h1>
-  <p>This is my first website made with GitHub and ChatGPT!</p>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">What We Do</a>
+    <a href="#">Our Insights</a>
+    <a href="#">Get Involved</a>
+    <a href="#">Donate</a>
+  </nav>
 
-  <!-- Magic Section -->
-  <h1 id="magicTitle">Welcome to Asad’s Magic & Nature Site! 😎</h1>
-  <p id="funText">Click the magic button below for a surprise! ✨</p>
-  <button onclick="magicButton()">Click Me!</button>
+  <header>
+    <h1>Conserving the lands and waters on which all life depends</h1>
+    <p>Your support helps us take on the dual threats of climate change and biodiversity loss across 80+ countries and territories.</p>
+  </header>
 
-  <!-- Slideshow Section -->
-  <section class="slideshow">
-    <div class="slide fade">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Nature 1">
+  <section>
+    <h2>Our Goals for 2030</h2>
+    <div class="goals">
+      <div class="goal">
+        <img src="https://example.com/icon‑carbon.png" alt="Carbon icon">
+        <h3>3B</h3>
+        <p>Avoid or sequester 3 billion metric tons of carbon dioxide annually.</p>
+      </div>
+      <div class="goal">
+        <img src="https://example.com/icon‑people.png" alt="People icon">
+        <h3>100M</h3>
+        <p>Help 100 million people at severe risk of climate‑related emergencies.</p>
+      </div>
+      <div class="goal">
+        <img src="https://example.com/icon‑land.png" alt="Land icon">
+        <h3>650M</h3>
+        <p>Conserve 650 million hectares of biodiverse habitats.</p>
+      </div>
+      <!-- add more as needed -->
     </div>
-    <div class="slide fade">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Nature 2">
-    </div>
-    <div class="slide fade">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80" alt="Nature 3">
-    </div>
-    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="next" onclick="changeSlide(1)">&#10095;</a>
   </section>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About This Site</h2>
-    <p>This website combines your first Hello World greeting with interactive magic and stunning nature visuals. Enjoy the surprises and landscapes!</p>
+  <section>
+    <h2>What’s New in Nature</h2>
+    <div class="articles">
+      <div class="article">
+        <img src="https://example.com/article‑1.jpg" alt="Article 1">
+        <div class="content">
+          <h3>From Overgrowth to Renewal</h3>
+          <p>How restoration is transforming western dry forests.</p>
+        </div>
+      </div>
+      <div class="article">
+        <img src="https://example.com/article‑2.jpg" alt="Article 2">
+        <div class="content">
+          <h3>Why We Need Good Fire</h3>
+          <p>Prescribed fire can help us regain control over how forests burn.</p>
+        </div>
+      </div>
+      <div class="article">
+        <img src="https://example.com/article‑3.jpg" alt="Article 3">
+        <div class="content">
+          <h3>Forest Keepers</h3>
+          <p>Fighting to save the forests of Borneo—a biodiversity epicenter.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <script>
-    // --- Magic Button Script ---
-    const body = document.body;
-    const title = document.getElementById('magicTitle');
-    const text = document.getElementById('funText');
+  <footer>
+    <p>&copy; 2025 Your Organization Name. All Rights Reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Use</a> |
+      <a href="#">Contact Us</a>
+    </p>
+  </footer>
 
-    function magicButton() {
-      const colors = ['#ff9a9e','#fad0c4','#a18cd1','#fbc2eb','#ffecd2','#cfd9df'];
-      body.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      const messages = [
-        "You're awesome! 💥",
-        "Keep coding, legend! 💻🔥",
-        "Innovation is your superpower ⚡",
-        "Wow, look at this magic! ✨",
-        "HTML wizard in action! 🧙‍♂️"
-      ];
-      text.textContent = messages[Math.floor(Math.random() * messages.length)];
-
-      title.style.transform = "rotate(" + (Math.random() * 30 - 15) + "deg)";
-    }
-
-    // --- Slideshow Script ---
-    let slideIndex = 0;
-    const slides = document.getElementsByClassName("slide");
-
-    function showSlide(n) {
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
-
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slides[slideIndex].style.display = "block";
-    }
-
-    function changeSlide(n) {
-      slideIndex += n;
-      showSlide(slideIndex);
-    }
-
-    // Initialize slideshow
-    showSlide(slideIndex);
-  </script>
 </body>
 </html>
