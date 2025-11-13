@@ -1,29 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Turn Ideas Into Reality – Asad Khan</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature of Pakistan</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#nature">Nature</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- Header with main image -->
+    <header>
+        <div class="header-content">
+            <h1>Discover Pakistan's Natural Beauty</h1>
+        </div>
+    </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-overlay">
-      <h1>I turn ideas into digital reality</h1>
-      <p>Exploring code, nature, and creativity one pixel at a time.</p>
-      <a href="#projects" class="button">View Projects</a>
-    </div>
-  </section>
+    <!-- Slider Section -->
+    <section class="slider">
+        <div class="slides">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hunza_Valley_2015.jpg" alt="Hunza Valley">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Faisal_Mosque_in_Islamabad.JPG" alt="Faisal Mosque">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Lake_Saif-ul-Malook.jpg" alt="Lake Saif ul Malook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Skardu_valley.JPG" alt="Skardu Valley">
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section class="options">
+        <div class="option-card">
+            <h2>Mountains</h2>
+            <p>Explore the majestic peaks of northern Pakistan.</p>
+        </div>
+        <div class="option-card">
+            <h2>Lakes</h2>
+            <p>Discover the serene and crystal-clear lakes.</p>
+        </div>
+        <div class="option-card">
+            <h2>Mosques</h2>
+            <p>Experience the iconic architecture, like Faisal Mosque.</p>
+        </div>
+        <div class="option-card">
+            <h2>Valleys</h2>
+            <p>Walk through the lush green valleys of Pakistan.</p>
+        </div>
+    </section>
+
+    <script>
+        // Simple slider functionality
+        const slides = document.querySelectorAll('.slides img');
+        let current = 0;
+        function slider() {
+            slides.forEach((img, i) => {
+                img.style.display = i === current ? 'block' : 'none';
+            });
+            current = (current + 1) % slides.length;
+        }
+        slider();
+        setInterval(slider, 4000); // change slide every 4s
+    </script>
+</body>
+</html>
