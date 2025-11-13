@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nature of Pakistan</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature of Pakistan</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Hero Header -->
     <header>
         <div class="hero-overlay">
             <h1>Discover Pakistan's Natural Beauty</h1>
@@ -17,7 +16,6 @@
         <canvas id="particles"></canvas>
     </header>
 
-    <!-- Sticky Sidebar with Icons -->
     <nav class="sidebar">
         <ul>
             <li><a href="#mountains"><i class="fas fa-mountain"></i> Mountains</a></li>
@@ -27,7 +25,6 @@
         </ul>
     </nav>
 
-    <!-- Slider Section -->
     <section class="slider">
         <div class="carousel">
             <div class="carousel-track">
@@ -41,7 +38,6 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main>
         <section id="mountains" class="content-section animate">
             <h2>Majestic Mountains</h2>
@@ -72,48 +68,92 @@
         <p>&copy; 2025 Nature of Pakistan. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Slider
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
         const nextBtn = document.querySelector('.next');
         const prevBtn = document.querySelector('.prev');
         const slideWidth = slides[0].getBoundingClientRect().width;
-        slides.forEach((slide, index) => slide.style.left = slideWidth * index + 'px');
+        slides.forEach((slide,index) => {
+            slide.style.left = (slideWidth * index) + 'px';
+        });
         let currentIndex = 0;
         function moveToSlide(index) {
-            track.style.transform = 'translateX(-' + slides[index].style.left + ')';
+            track.style.transform = 'translateX(-' + (slideWidth * index) + 'px)';
         }
-        nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; moveToSlide(currentIndex); });
-        prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; moveToSlide(currentIndex); });
-        setInterval(() => { currentIndex = (currentIndex + 1) % slides.length; moveToSlide(currentIndex); }, 4000);
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(currentIndex);
+        });
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            moveToSlide(currentIndex);
+        });
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(currentIndex);
+        }, 4000);
 
-        // Scroll-triggered animations
         const animSections = document.querySelectorAll('.animate');
         window.addEventListener('scroll', () => {
             animSections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
                 const triggerPoint = window.innerHeight - 100;
-                if(sectionTop < triggerPoint) { section.classList.add('show'); }
+                if(sectionTop < triggerPoint) {
+                    section.classList.add('show');
+                }
             });
         });
 
-        // Particle Background
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight * 0.7;
         let particlesArray = [];
         class Particle {
-            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 3 + 1; this.speedX = Math.random() * 1 - 0.5; this.speedY = Math.random() * 1 - 0.5; }
-            update() { this.x += this.speedX; this.y += this.speedY; if(this.x > canvas.width) this.x = 0; if(this.x < 0) this.x = canvas.width; if(this.y > canvas.height) this.y = 0; if(this.y < 0) this.y = canvas.height; }
-            draw() { ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+            constructor(){
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+            }
+            update(){
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if(this.x > canvas.width) this.x = 0;
+                if(this.x < 0) this.x = canvas.width;
+                if(this.y > canvas.height) this.y = 0;
+                if(this.y < 0) this.y = canvas.height;
+            }
+            draw(){
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
-        function initParticles() { particlesArray = []; for(let i=0;i<100;i++){particlesArray.push(new Particle());} }
-        function animateParticles() { ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p => {p.update(); p.draw();}); requestAnimationFrame(animateParticles); }
-        initParticles(); animateParticles();
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight * 0.7; initParticles(); });
+        function initParticles(){
+            particlesArray = [];
+            for(let i=0;i<100;i++){
+                particlesArray.push(new Particle());
+            }
+        }
+        function animateParticles(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight * 0.7;
+            initParticles();
+        });
     </script>
 </body>
-</html>a
+</html>
